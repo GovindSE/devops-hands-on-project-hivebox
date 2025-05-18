@@ -31,7 +31,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ env.VERSION }} .
+           REPO_NAME=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+           docker build -t ghcr.io/$REPO_NAME:${{ env.VERSION }} .
 
       - name: Push Docker image
         run: |
